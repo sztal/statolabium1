@@ -7,9 +7,6 @@ shinyServer(function(input, output, session) {
     
     # Load packages ---
     library(cocor)
-    
-    # Initialize modules ---
-    callModule(intro, "pageIntro")
 }) 
 
 #  ------------------------------------------------------------------------

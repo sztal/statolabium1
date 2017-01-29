@@ -1,0 +1,31 @@
+html {
+    height:     100%;
+    font-size:  62.5%;  // this configuration rem equals 10 px (em of html as well)
+
+	@media (max-width: @screen-xs-max) {
+        font-size: 50%;     // W tej konfiguracji em na dziecku bądź rem na dowolnym elemencie roota odpowiada 8 pixelom (bo domyślna wielkość to 16px)
+    }
+	@media (max-width: @screen-xs-min) {
+    	font-size:  43.75%;     // W tej konfiguracji em na dziecku bądź rem na dowolnym elemencie roota odpowiada 7 pixelom (bo domyślna wielkość to 16px)
+	}
+}
+
+body {
+    padding-top:    7rem;
+}
+
+
+.container-fluid {
+	padding-left:	15%;
+	padding-right:	15%;
+
+	@media (max-width: @screen-md-max) {
+		padding-left:	10%;
+		padding-right:	10%;
+
+		@media (max-width: @screen-xs-max) {
+			padding-left:	5%;
+			padding-right:	5%;
+		}
+	}
+}
