@@ -7,8 +7,10 @@ options(shiny.trace = FALSE, shiny.reactlog = FALSE)
 # Global variables --------------------------------------------------------
 
 # App settings ---
-appTitle <- "Statolabium I"
-appDesc  <- "korelacje liniowe"
+appFamily <- "Statolabium"
+appNum    <- "I"
+appTitle  <- paste(appFamily, appNum)
+appDesc   <- "korelacje liniowe"
 
 # Colors ---
 psColors <- list(
@@ -25,5 +27,7 @@ psColors <- list(
 # Load modules ------------------------------------------------------------
 
 source(normalizePath("modules/intro.R"), local = TRUE)      # Intro page
+source(normalizePath("modules/header.R"), local = TRUE)     # common header
+source(normalizePath("modules/footer.R"), local = TRUE)     # common footer
 
 #  ------------------------------------------------------------------------

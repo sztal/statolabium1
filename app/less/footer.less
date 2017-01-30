@@ -1,0 +1,73 @@
+#footer {
+	color:		@ps-gray-dk2;
+	position:	relative;
+	width:		100vw;
+	left:		-15vw;
+	margin-top:	15rem;
+	background:	@ps-gray-vdk;
+
+	@media (max-width: @screen-md-max) {
+        left:	-10vw;
+
+        @media (max-width: @screen-xs-max) {
+			left:	-5vw;
+        }
+    }
+
+	&> .row {
+		display:		flex;
+		align-items:	center;
+		padding:	3em 15% 1em 15%;
+
+		@media (max-width: @screen-md-max) {
+			padding-left:	10%;
+			padding-right:	10%;
+
+			@media (max-width: @screen-xs-max) {
+				padding-left:	5%;
+				padding-right:	5%;
+				flex-direction:	column;
+			}
+		}
+
+		.nice-border {
+			border-left:	@ps-blue-lt solid 5px;
+		}
+
+	}
+
+	img {
+		padding:	1em 0 1em 0;
+	}
+
+	dl {
+		padding:	1em 0 1em 0;
+
+		dt {
+			display:		inline-block;
+			width:			35%;
+			padding:		0.25em 0 0.25em 0;
+			vertical-align:	top;	
+		}
+		
+		dd {
+			display:		inline-block;
+			width:			63%;
+			padding:		0.25em 0 0.25em 0;
+			vertical-align:	top;
+		}
+
+	}
+
+	.stopka {
+		padding-top:	0;
+		text-align:		center;
+		
+		.slogan {
+			@media (max-width: @screen-sm-max) {
+				display:	none;
+			}
+		}
+	}
+
+}

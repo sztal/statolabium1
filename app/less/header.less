@@ -1,0 +1,29 @@
+#header {
+	height:				330px;
+	width:				100vw;
+	position:			relative;
+	left:				-15vw;
+	background-image:	url("../img/Background3.jpg");
+	background-size:	cover;
+	border-bottom:		@ps-gray-vdk solid 5px;
+
+	@media (max-width: @screen-md-max) {
+		left:	-10vw;
+		@media (max-width: @screen-xs-max) {
+			left:	-5vw;
+			height:	200px;
+		}
+	}
+
+	img {
+		position:	relative;
+		left:		5em;
+		top:		5em;
+
+		@media (max-width: @screen-xs-max) {
+			left:		0em;
+			padding:	0 2em 0 2em;
+		}
+	}
+
+}

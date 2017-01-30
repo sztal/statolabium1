@@ -1,0 +1,73 @@
+nav.navbar.navbar-default {
+	background:		@ps-gray-vdk;
+	color:			red;
+	border-bottom:	@ps-gray-dk solid 1px;
+	min-height:		65px;
+	
+	.navbar-header {
+		min-height:	65px;
+		
+		button.navbar-toggle {
+			margin-top:	15.5px;
+		}
+
+		.navbar-brand {
+			color:	@ps-gray-lt;
+			
+			small {
+				display: block;
+			}
+		}
+	}
+
+	.navbar-collapse {
+		min-height:	65px;
+
+		.nav.navbar-nav {
+			min-height:	65px;
+
+			&> li {
+				height:	65px;
+
+				@media (max-width: @screen-xs-max) {
+					height:	40px;
+					
+					&.dropdown {
+						min-height: 40px;
+						height:		auto;
+					}
+				}
+
+				&.active {
+					a {
+						background:	@ps-blue-lt;
+						color:		white;
+					}
+				}
+
+				&.dropdown.open {
+
+					a {
+						background: @ps-blue-lt;
+						color:		white;
+					}
+					
+					ul {
+						background: @ps-blue-lt;
+					}
+
+				}
+
+				&> a {
+					height:			100%;
+					display:		flex;
+					align-items:	center;
+					color:			@ps-gray-lt;
+				}
+
+			}
+			
+		}
+		
+	}	
+}
