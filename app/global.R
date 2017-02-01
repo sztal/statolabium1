@@ -24,9 +24,13 @@ psColors <- list(
 )
 
 
+# Load views --------------------------------------------------------------
+
+source(normalizePath("views/intro.R"), local = TRUE)        # intro page
+
+
 # Load modules ------------------------------------------------------------
 
-source(normalizePath("modules/intro.R"), local = TRUE)      # Intro page
 source(normalizePath("modules/header.R"), local = TRUE)     # common header
 source(normalizePath("modules/footer.R"), local = TRUE)     # common footer
 
