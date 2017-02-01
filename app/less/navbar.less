@@ -3,6 +3,21 @@ nav.navbar.navbar-default {
 	color:			red;
 	border-bottom:	@ps-gray-dk solid 1px;
 	min-height:		65px;
+
+	.container-fluid {
+		padding-left:	15%;
+		padding-right:	15%;
+
+		@media (max-width: @screen-md-max) {
+			padding-left:	10%;
+			padding-right:	10%;
+
+			@media (max-width: @screen-xs-max) {
+				padding-left:	5%;
+				padding-right: 	5%;
+			}
+		}
+	}	
 	
 	.navbar-header {
 		min-height:	65px;
@@ -28,6 +43,15 @@ nav.navbar.navbar-default {
 
 			&> li {
 				height:	65px;
+
+				&.dropdown {
+					font-size:	1em;
+
+					.dropdown-menu {
+						font-size:	1em;
+					}
+
+				}
 
 				@media (max-width: @screen-xs-max) {
 					height:	40px;

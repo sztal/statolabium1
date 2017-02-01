@@ -5,7 +5,7 @@
 shinyUI(navbarPage(HTML(paste0(appTitle, "<small>", appDesc, "</small>")),
     # UI with navbar and subpages (implemented as tabs in a tabset)
     tabPanel("Intro", introUI("pageIntro")),
-    tabPanel("Dane"),
+    tabPanel("Dane", daneUI("pageDane")),
     tabPanel("Korelacje"),
     navbarMenu("Porównania",
                tabPanel("Porównania niezależne"),

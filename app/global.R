@@ -27,6 +27,7 @@ psColors <- list(
 # Load views --------------------------------------------------------------
 
 source(normalizePath("views/intro.R"), local = TRUE)        # intro page
+source(normalizePath("views/dane.R"), local = TRUE)         # dane page
 
 
 # Load modules ------------------------------------------------------------
