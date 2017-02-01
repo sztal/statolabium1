@@ -15,12 +15,26 @@ shinyUI(navbarPage(HTML(paste0(appTitle, "<small>", appDesc, "</small>")),
                 
                 # Sidebar UI definition
                 sidebarPanel(
-                    flatFileInput("datafile",
-                        label      = "Zbiór danych w formacie tekstowym (np. .txt, .csv, .tsv)",
-                        headLabel  = "Nazwy zmiennych w pierwszym wierszu",
-                        sepLabel   = "Separator pól",
-                        decLabel   = "Separator części dziesiętnej",
-                        quoteLabel = "Czudzysłów dla wartości tekstowych"
+                    
+                    # File type handle
+                    selectInput("fileType", "Format pliku", c(
+                        "tekstowy"    = "flat",
+                        ".xls(x)"     = "xlsx",
+                        "SPSS (.sav)" = "spss"
+                    )),
+                    
+                    # File input handle (flat file case)
+                    conditionalPanel(
+                        # calls the flatFile module
+                        condition = "input.fileType == 'flat'",
+                        
+                        flatFileInput("datafile",
+                            label      = "Zbiór danych w formacie tekstowym (np. .txt, .csv, .tsv)",
+                            headLabel  = "Nazwy zmiennych w pierwszym wierszu",
+                            sepLabel   = "Separator pól",
+                            decLabel   = "Separator części dziesiętnej",
+                            quoteLabel = "Czudzysłów dla wartości tekstowych"
+                        )   
                     )
                 ),
                 
