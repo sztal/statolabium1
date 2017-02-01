@@ -1,5 +1,11 @@
 # global.R --- defines global, session-independent objects
 
+
+# Load Shiny --------------------------------------------------------------
+
+library(shiny)
+library(DT)
+
 # Global options ----------------------------------------------------------
 
 options(shiny.trace = FALSE, shiny.reactlog = FALSE)
@@ -27,12 +33,11 @@ psColors <- list(
 # Load views --------------------------------------------------------------
 
 source(normalizePath("views/intro.R"), local = TRUE)        # intro page
-source(normalizePath("views/dane.R"), local = TRUE)         # dane page
-
 
 # Load modules ------------------------------------------------------------
 
-source(normalizePath("modules/header.R"), local = TRUE)     # common header
-source(normalizePath("modules/footer.R"), local = TRUE)     # common footer
+source(normalizePath("modules/header.R"), local = TRUE)                 # common header
+source(normalizePath("modules/footer.R"), local = TRUE)                 # common footer
+source(normalizePath("modules/fileUpload/flatFile.R"), local = TRUE)    # flat file (text) data file upload
 
 #  ------------------------------------------------------------------------
