@@ -4,31 +4,31 @@
 # UI function -------------------------------------------------------------
 
 flatFileInput <- function(id, 
-                            label = "Flat file (i.e. .txt, .csv, .tsv)",
-                            headLabel  = "Has heading",
-                            sepLabel   = "Field separator",
-                            decLabel   = "Decimal separator",
-                            quoteLabel = "Quote") {
+                          label = "Flat file (i.e. .txt, .csv, .tsv)",
+                          headLabel  = "Has heading",
+                          sepLabel   = "Field separator",
+                          decLabel   = "Decimal separator",
+                          quoteLabel = "Quote") {
     # Namespace function using the provided id
     ns <- NS(id)
     
     tagList(
-        fileInput(ns("file"), label, accept = "text/csv"),
+        fileInput(ns("flatFile"), label, accept = "text/csv"),
         checkboxInput(ns("heading"), headLabel, value = TRUE),
         selectInput(ns("sep"), sepLabel, c(
            "tabulator" = "\t",
            "przecinek" = ",",
            "średnik"   = ";"
-        ), selected = "średnik"),
+        ), selected = ";"),
         selectInput(ns("dec"), decLabel, c(
             "przecinek" = ",",
             "kropka"    = "."
-        ), selected = "przecinek"),
+        ), selected = ","),
         selectInput(ns("quote"), quoteLabel, c(
             "brak" = "",
             "cudzysłów podwójny" = "\"",
             "cudzysłów pojedynczy" = "'"
-        ), selected = "brak")
+        ), selected = "\"")
     )
 }
 
@@ -39,8 +39,8 @@ flatFile <- function(input, output, session,
                      stringsAsFactors = TRUE, check.names = FALSE) {
     userFile <- reactive({
         # If no file is selected, don't do anything
-        shiny::validate(need(input$file, message = FALSE))
-        input$file
+        shiny::validate(need(input$flatFile, message = FALSE))
+        input$flatFile
     })
     
     # The user's data parsed into a data.frame

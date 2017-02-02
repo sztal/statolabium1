@@ -1,14 +1,16 @@
 # global.R --- defines global, session-independent objects
 
 
-# Load Shiny --------------------------------------------------------------
+# Load Shiny and other packages -------------------------------------------
 
 library(shiny)
 library(DT)
+library(xlsx)
+library(foreign)
 
 # Global options ----------------------------------------------------------
 
-options(shiny.trace = FALSE, shiny.reactlog = FALSE)
+options(shiny.trace = FALSE, shiny.reactlog = TRUE)
 
 # Global variables --------------------------------------------------------
 
@@ -36,8 +38,11 @@ source(normalizePath("views/intro.R"), local = TRUE)        # intro page
 
 # Load modules ------------------------------------------------------------
 
-source(normalizePath("modules/header.R"), local = TRUE)                 # common header
-source(normalizePath("modules/footer.R"), local = TRUE)                 # common footer
-source(normalizePath("modules/fileUpload/flatFile.R"), local = TRUE)    # flat file (text) data file upload
+source(normalizePath("modules/staticElements/header.R"), local = TRUE)  # common header
+source(normalizePath("modules/staticElements/footer.R"), local = TRUE)  # common footer
+source(normalizePath("modules/fileUpload/flatFile.R"), local = TRUE)    # flat file (text) upload
+source(normalizePath("modules/fileUpload/excelFile.R"), local = TRUE)   # excel file upload
+source(normalizePath("modules/fileUpload/spssFile.R"), local = TRUE)    # spss file upload
+source(normalizePath("modules/fileUpload/example.R"), local = TRUE)     # example file (iris)
 
 #  ------------------------------------------------------------------------

@@ -38,3 +38,7 @@ vignettes/*.pdf
 
 # tmp files
 **/tmp.*
+*.csv
+*.sav
+*.xlsx
+*.xls
