@@ -11,7 +11,7 @@ spssFileInput <- function(id,
     
     tagList(
         fileInput(ns("spssFile"), label, 
-                  accept = c("application/x-spss")),
+                  accept = c("application/x-spss-sav")),
         checkboxInput(ns("valueLabels"), valueLabelsLabel, value = TRUE)
     )
 }
@@ -19,11 +19,8 @@ spssFileInput <- function(id,
 # Server function ---------------------------------------------------------
 
 spssFile <- function(input, output, session) {
-    userFile <- reactive({
-        # If no file is selected, don't do anything
-        shiny::validate(need(input$spssFile, message = FALSE))
-        input$spssFile
-    })
+    
+    userFile <- get_validated("spssFile", input)
     
     # The user's data parsed into a data.frame
     dataframe <- reactive({
@@ -32,7 +29,7 @@ spssFile <- function(input, output, session) {
             to.data.frame     = TRUE,
             trim.factor.names = TRUE,
             trim_values       = TRUE
-        )
+        ) %>% tbl_dt
     })
     
     # Notify when the file is uploaded

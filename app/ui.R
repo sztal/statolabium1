@@ -6,7 +6,7 @@ shinyUI(navbarPage(HTML(paste0(appTitle, "<small>", appDesc, "</small>")),
     # UI with navbar and subpages (implemented as tabs in a tabset)
     tabPanel("Intro", introUI("pageIntro")),
     
-    # 'Dane' subpage --- 
+    # 'Dane' subpage ----------------------------------------------------------
     tabPanel("Dane",
         tags$section(id = "dane",
             
@@ -64,7 +64,7 @@ shinyUI(navbarPage(HTML(paste0(appTitle, "<small>", appDesc, "</small>")),
                     # File input handle (Iris example dataset case)
                     conditionalPanel(
                         condition = "input.fileType == 'iris'",
-                        exampleInput("Opis zbioru danych")
+                        exampleInput("example")
                     )
                 ),
                 
@@ -75,12 +75,65 @@ shinyUI(navbarPage(HTML(paste0(appTitle, "<small>", appDesc, "</small>")),
             )
         )
     ),
-    tabPanel("Korelacje"),
-    navbarMenu("Porównania",
-               tabPanel("Porównania niezależne"),
-               tabPanel("Porównania zależne")
+    
+    # 'Korelacje' subpage ----------------------------------------------------------
+    tabPanel("Korelacje",
+        tags$section(id = "Korelacje",
+            
+            # Sidebar page layout definition
+            sidebarLayout(
+                
+                # Sidebar UI definition
+                sidebarPanel(
+                    uiOutput("cor1UI"),
+                    uiOutput("cor2UI"),
+                    selectInput("corPAdjust", "Korekta poziomu istotności (p*)", c(
+                        "brak",
+                        "Bonferroni",
+                        "Holm",
+                        "Benjamini-Hochberg (FDR)")
+                    ),
+                    sliderInput("corConf", "Poziom ufności (%)", min = 80, max = 100, value = 95, step = 1)
+                ),
+                
+                # Main panel UI definition
+                mainPanel(
+                    
+                    # Summary
+                    #uiOutput("corSummary"),
+                    # Correlation table
+                    dataTableOutput("corTable")
+                )
+            )
+        )
     ),
-    # Options ---
+    
+    # 'Porównania' subpage ----------------------------------------------------------
+    navbarMenu("Porównania",
+        tabPanel("Porównania niezależne",
+            
+            # Sidebar page layout definition
+            sidebarLayout(
+                     
+                # Sidebar UI definition
+                sidebarPanel(
+                    uiOutput("cocorIndep1"),
+                    uiOutput("cocorIndep2"),
+                    uiOutput("cocorIndepFactor"),
+                    uiOutput("cocorIndepLvl1"),
+                    uiOutput("cocorIndepLvl2")
+                ),
+                
+                # Main panel UI definition
+                mainPanel(
+                    
+                )
+            )
+                 
+        ),
+        tabPanel("Porównania zależne")
+    ),
+    # Options ----------------------------------------------------------
     collapsible = TRUE, position = "fixed-top", selected = "Intro",
     header = headerUI("pageHeader"),
     footer = footerUI("pageFooter"),

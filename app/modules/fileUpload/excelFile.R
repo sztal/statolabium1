@@ -27,11 +27,8 @@ xlsxFileInput <- function(id,
 # Server function ---------------------------------------------------------
 
 xlsxFile <- function(input, output, session) {
-    userFile <- reactive({
-        # If no file is selected, don't do anything
-        shiny::validate(need(input$xlsxFile, message = FALSE))
-        input$xlsxFile
-    })
+    
+    userFile <- get_validated("xlsxFile", input)
     
     # The user's data parsed into a data.frame
     dataframe <- reactive({
@@ -43,7 +40,7 @@ xlsxFile <- function(input, output, session) {
             endRow        = if(input$endRow == "") NULL else as.numeric(input$endRow),
             colIndex      = if(input$colIndex == "") NULL else as.numeric(gsub(" ", "", unlist(strsplit(input$colIndex, ",")))),
             as.data.frame = TRUE
-        )
+        ) %>% tbl_dt
     })
     
     # Notify when the file is uploaded

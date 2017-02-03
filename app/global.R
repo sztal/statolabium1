@@ -5,12 +5,47 @@
 
 library(shiny)
 library(DT)
+library(magrittr)
+library(tibble)
+library(data.table)
+library(dplyr)
+library(dtplyr)
+library(purrr)
+library(broom)
 library(xlsx)
 library(foreign)
+library(cocor)
+
+# helper functions ---
+source(normalizePath("functions/functions.R"), local = TRUE)
 
 # Global options ----------------------------------------------------------
 
-options(shiny.trace = FALSE, shiny.reactlog = TRUE)
+options(shiny.trace = FALSE, shiny.reactlog = TRUE, OutDec = ",")
+options(
+    DT.options  = list(
+        pageLength = 10,
+        lengthMenu   = list(c(5, 10, 15, 20, -1), c('5', '10', '15', '20', 'Całość')),
+        searching    = TRUE,
+        keys         = TRUE,
+        dom          = 'Blfrtip',
+        buttons      = I('colvis'),
+        scrollX      = TRUE,
+        fixedColumns = TRUE,
+        colReorder   = TRUE,
+        language   = list(
+            url = "//cdn.datatables.net/plug-ins/1.10.13/i18n/Polish.json",
+            buttons = list(colvis = "Wybierz kolumny")
+        )
+    )
+)
+# Extensions used by all DataTables
+DT_extensions <- c(
+    'KeyTable',
+    'Buttons',
+    'FixedColumns',
+    'ColReorder'
+)
 
 # Global variables --------------------------------------------------------
 

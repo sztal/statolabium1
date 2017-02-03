@@ -12,12 +12,12 @@ footerUI <- function(id) {
             tags$section(id = "footer",
                 fluidRow(
                     column(6,
-                        a(img(class = "img-responsive", src = "img/Logo.png"), href = "http://pogotowiestatystyczne.pl/")
+                        a(img(class = "img-responsive", src = "img/Logo.png"), href = "http://pogotowiestatystyczne.pl")
                     ),
                     column(6, class = "nice-border",
                         tags$dl(
                             tags$dt("Strona WWW:"),
-                            tags$dd(a("www.pogotowiestatystyczne.pl/", href = "http://pogotowiestatystyczne.pl/")),
+                            tags$dd(a("www.pogotowiestatystyczne.pl", href = "http://pogotowiestatystyczne.pl")),
                             tags$dt("E-mail:"),
                             tags$dd(a("info@pogotowiestatystyczne.pl", href = "mailto:info@pogotowiestatystyczne.pl?Subject=Pytanie")),
                             tags$dt("Problemy techniczne:"),

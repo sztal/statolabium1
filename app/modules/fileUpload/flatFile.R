@@ -37,11 +37,8 @@ flatFileInput <- function(id,
 
 flatFile <- function(input, output, session,
                      stringsAsFactors = TRUE, check.names = FALSE) {
-    userFile <- reactive({
-        # If no file is selected, don't do anything
-        shiny::validate(need(input$flatFile, message = FALSE))
-        input$flatFile
-    })
+    
+    userFile <- get_validated("flatFile", input)
     
     # The user's data parsed into a data.frame
     dataframe <- reactive({
@@ -52,7 +49,7 @@ flatFile <- function(input, output, session,
             quote  = input$quote,
             stringsAsFactors = stringsAsFactors,
             check.names = check.names
-        )
+        ) %>% tbl_dt
     })
 
     # Notify when the file is uploaded
