@@ -10,6 +10,7 @@ var watch		= require('gulp-watch');							// watch files and fire tasks when nee
 var cssmin      = require('gulp-cssmin');                           // minify css sheets
 var rename      = require('gulp-rename');                           // rename files going through gulp streams
 var plumber     = require('gulp-plumber');                          // Prevent gulp stream from breaking on errors
+var copy		= require('gulp-copy');								// copy files with gulp
 
 
 // Helper variables and functions
@@ -42,3 +43,9 @@ gulp.task('watch', function() {
 
 // Gulp default task
 gulp.task('default', ['less']);
+
+// Build dist version app
+gulp.task('build', function() {
+	return gulp.src([ path.join(app, '{ui,server,global}.R'), path.join(app, '{functions,modules,views,www}/**/*') ])
+	.pipe(gulp.dest(path.join(app, '../../dist')));
+});
