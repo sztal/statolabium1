@@ -10,7 +10,7 @@ headerUI <- function(id) {
     tagList(
         column(12,
             tags$section(id = "header",
-                img(class = "img-responsive", src = "img/Logo.png")
+                img(class = "img-responsive", src = "img/Logo.png", alt = "Pogotowie Statystyczne")
             )
         )
     )

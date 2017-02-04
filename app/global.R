@@ -11,6 +11,8 @@ library(data.table)
 library(dplyr)
 library(dtplyr)
 library(purrr)
+library(ggplot2)
+library(lazyeval)
 library(broom)
 library(xlsx)
 library(foreign)
@@ -46,6 +48,9 @@ DT_extensions <- c(
     'FixedColumns',
     'ColReorder'
 )
+
+# ggplot color scheme
+theme_set(theme_classic(base_size = 16))
 
 # Global variables --------------------------------------------------------
 

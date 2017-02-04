@@ -99,8 +99,6 @@ shinyUI(navbarPage(HTML(paste0(appTitle, "<small>", appDesc, "</small>")),
                 # Main panel UI definition
                 mainPanel(
                     
-                    # Summary
-                    #uiOutput("corSummary"),
                     # Correlation table
                     dataTableOutput("corTable")
                 )
@@ -111,27 +109,73 @@ shinyUI(navbarPage(HTML(paste0(appTitle, "<small>", appDesc, "</small>")),
     # 'Porównania' subpage ----------------------------------------------------------
     navbarMenu("Porównania",
         tabPanel("Porównania niezależne",
+            tags$section(id = "porównania-niezależne",
             
-            # Sidebar page layout definition
-            sidebarLayout(
+                # Sidebar page layout definition
+                sidebarLayout(
                      
-                # Sidebar UI definition
-                sidebarPanel(
-                    uiOutput("cocorIndep1"),
-                    uiOutput("cocorIndep2"),
-                    uiOutput("cocorIndepFactor"),
-                    uiOutput("cocorIndepLvl1"),
-                    uiOutput("cocorIndepLvl2")
-                ),
+                    # Sidebar UI definition
+                    sidebarPanel(
+                        uiOutput("cocorIndep1"),
+                        uiOutput("cocorIndep2"),
+                        uiOutput("cocorIndepFactor"),
+                        uiOutput("cocorIndepLvl1"),
+                        uiOutput("cocorIndepLvl2"),
+                        sliderInput("cocorIndepConf", "Poziom ufności (%)", min = 80, max = 100, value = 95, step = 1)
+                    ),
                 
-                # Main panel UI definition
-                mainPanel(
-                    
+                    # Main panel UI definition
+                    mainPanel(
+                        tags$div(class = "desc-wrapper",
+                            h1("Porównywanie korelacji w grupach niezależnych"),
+                            p(HTML("Ten panel pozwala na porównywanie natężenia korelacji w dwóch niezależnych grupach.",
+                            "Istotność różnicy między współczynnikami korelacji badana jest testem Z&nbsp;Fishera.",
+                            "Przedział ufności wyznaczany jest przy użyciu metody Zou (2007).")),
+                            tags$br(),
+                            uiOutput("cocorIndepDesc"),
+                            tags$br(),
+                            plotOutput("cocorIndepPlot")
+                        )
+                    )
                 )
             )
-                 
         ),
-        tabPanel("Porównania zależne")
+        tabPanel("Porównania zależne",
+            tags$section(id = "porównania-zależne",
+                
+                # Sidebar page layout definition
+                sidebarLayout(
+                             
+                    # Sidebar UI definition
+                    sidebarPanel(
+                        uiOutput("cocorDepA1"),
+                        uiOutput("cocorDepA2"),
+                        uiOutput("cocorDepB1"),
+                        uiOutput("cocorDepB2"),
+                        uiOutput("cocorDepTest"),
+                        sliderInput("cocorDepConf", "Poziom ufności (%)", min = 80, max = 100, value = 95, step = 1)
+                    ),
+                    
+                    # Main panel UI definition
+                    mainPanel(
+                        tags$div(class = "desc-wrapper",
+                            h1("Porównywanie korelacji zależnych"),
+                            p(
+                                "Korelacje zależne dotyczą powiązań określanymi dla różnych zmiennych mierzonych dla tych samych obserwacji.",
+                                "Moga one być rozłączne (korelacja między zmiennymi A i B vs. korelacja między zmiennymi C i D) bądź mogą się",
+                                "częściowo pokrywać (korelacja między zmiennymi A i B vs. korelacja między zmiennymi B i C).",
+                                "Możliwe do wykorzystania w danym przypadku testy istotności wymienione są w panelu użytkownika.",
+                                "Przedziały ufności wyznaczane są przy użyciu metody Zou (2007).",
+                                tags$br(),
+                                uiOutput("cocorDepDesc"),
+                                tags$br(),
+                                plotOutput("cocorDepPlot")
+                            )
+                        )
+                    )
+                )
+            )
+        )
     ),
     # Options ----------------------------------------------------------
     collapsible = TRUE, position = "fixed-top", selected = "Intro",

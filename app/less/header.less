@@ -1,31 +1,26 @@
 #header {
-
 	height:				330px;
-	//width:				100vw;
-	//position:			relative;
-	//left:				-15vw;
 	background-image:	url("../img/Background.jpg");
 	background-size:	cover;
 	border-bottom:		@ps-gray-vdk solid 5px;
 	margin:				0 -15px 0 -15px;
 
-	@media (max-width: @screen-md-max) {
-		//left:	-10vw;
-		@media (max-width: @screen-xs-max) {
-			//left:	-5vw;
-			height:	200px;
-		}
+	@media (max-width: @screen-xs-max) {
+		height:	200px;
+		top:	0;
 	}
-
+	
+	
 	img {
 		position:	relative;
-		left:		5em;
-		top:		5em;
+		left:		3em;
+		top:		2em;
 
 		@media (max-width: @screen-xs-max) {
 			left:		0em;
-			padding:	0 2em 0 2em;
+			padding:	0 1em 0 1em;
 		}
 	}
+	
 
 }

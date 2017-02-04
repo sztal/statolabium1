@@ -2,8 +2,19 @@
 
 
 
-# Validated reactive input accessor factory -------------------------------
+# Reactive functions factories --------------------------------------------
 
+# Get reactive value when validated
+get_validated <- function(nm, input) {
+    reactive(
+        {
+            # If no file is selected, don't do anything
+            shiny::validate(need(input[[nm]], message = FALSE))
+            input[[nm]]
+        }, 
+        quoted = FALSE
+    )
+}
 
 
 # Standard functions ------------------------------------------------------
