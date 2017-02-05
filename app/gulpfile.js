@@ -47,5 +47,5 @@ gulp.task('default', ['less']);
 // Build dist version app
 gulp.task('build', function() {
 	return gulp.src([ path.join(app, '{ui,server,global}.R'), path.join(app, '{functions,modules,views,www}/**/*') ])
-	.pipe(gulp.dest(path.join(app, '../../dist')));
+	.pipe(gulp.dest(path.join(app, '../../PorKor')));
 });
