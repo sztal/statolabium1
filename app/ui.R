@@ -2,7 +2,7 @@
 
 #  ------------------------------------------------------------------------
 
-shinyUI(navbarPage(HTML(paste0(appTitle, "<small>", appDesc, "</small>")),
+shinyUI(navbarPage(HTML(paste0(appTitle, "<small>", appFamily, "</small>")),
     # UI with navbar and subpages (implemented as tabs in a tabset)
     tabPanel("Intro", introUI("pageIntro")),
     
@@ -181,7 +181,7 @@ shinyUI(navbarPage(HTML(paste0(appTitle, "<small>", appDesc, "</small>")),
     collapsible = TRUE, position = "fixed-top", selected = "Intro",
     header = headerUI("pageHeader"),
     footer = footerUI("pageFooter"),
-    windowTitle = paste(appTitle, appDesc, sep = ": "),
+    windowTitle = paste(appFamily, appName, sep = ": "),
     theme = "css/main.min.css"
 ))
 

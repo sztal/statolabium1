@@ -58,13 +58,12 @@ get_validated <- function(nm, input) {
 }
 
 # Get tidy correlation output ---
-tidy_cor <- function(htest, conf_lvl = NULL, adjust_method = NULL, n_adjust = NULL) {
+tidy_cor <- function(htest, conf_lvl = NULL) {
     if (is_null(conf_lvl)) conf_lvl <- "CI"
     else if (is_numeric(conf_lvl)) conf_lvl <- paste0(round(conf_lvl * 100), "% CI")
     df <- tidy(htest) %>% mutate(CI = .frmCI(conf.low, conf.high))
     df <- df %>% select(estimate, CI, parameter, statistic, p.value) %>%
         rename_(.dots = set_names(names(.), c("r", conf_lvl, "df", "t", "p")))
-    if (!is.null(adjust_method)) df <- mutate(df, `p*` = p.adjust(p, method = adjust_method, n = n_adjust))
     df <- df %>% mutate_at(vars(r, t), .frm) %>% mutate_at(vars(starts_with("p")), .pval)
     df
 }
@@ -75,9 +74,11 @@ correlation_table <- function(df1, df2, conf_lvl = .95, adjust_method = NULL) {
     m2       <- ncol(df2)
     nm1      <- names(df1)
     nm2      <- names(df2)
-    Corr     <- cross2(df2, df1) %>% map(~ cor.test(.x[[1]], .x[[2]], conf.level = conf_lvl)) %>% 
-        map(tidy_cor, conf_lvl, adjust_method, m1 * m2) %>% bind_rows %>% 
-        cbind(`Zmienna I` = reduce(map(nm1, .pad, m2), c), `Zmienna II` = rep(nm2, m1), .)
+    Corr     <- cross2(df2, df1) %>% map(~ cor.test(.x[[1]], .x[[2]], conf.level = conf_lvl)) %>% map(tidy_cor, conf_lvl) %>% 
+        bind_rows %>% cbind(`Zmienna I` = reduce(map(nm1, .pad, m2), c), `Zmienna II` = rep(nm2, m1), .)
+    if (!is.null(adjust_method)) {
+        Corr <- mutate(Corr, `p*` = p %>% gsub(",", ".", .) %>% as.numeric %>% p.adjust(method = adjust_method) %>% .pval)
+    }
     Corr
 }
 

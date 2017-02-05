@@ -22,10 +22,9 @@ Corr <- reactive({
         need(input$cocorIndep1 != input$cocorIndep2, message = FALSE),
         need(input$cocorIndepLvl1 != input$cocorIndepLvl2, message = FALSE)
     )
-    CN <- datafile()() %>% split(.[[input$cocorIndepFactor]]) %>% extract(names(.) %in% c(input$cocorIndepLvl1, input$cocorIndepLvl2)) %>%
-        map(~ c(r = cor(.x[[input$cocorIndep1]], .x[[input$cocorIndep2]]), n = nrow(.x)))
-    cocor.indep.groups(r1.jk = CN[[1]][1], r2.hm = CN[[2]][1], n1 = CN[[1]][2], n2 = CN[[2]][2],
-                       conf.level = input$cocorIndepConf / 100, return.htest = TRUE)
+    frm <- paste("~", input$cocorIndep1, "+", input$cocorIndep2, "|", input$cocorIndep1, "+", input$cocorIndep2) %>% as.formula()
+    datafile()() %>% split(., .[[input$cocorIndepFactor]]) %>% keep(., names(.) %in% c(input$cocorIndepLvl1, input$cocorIndepLvl2)) %>%
+        cocor(frm, data = ., conf.level = input$cocorIndepConf / 100, return.htest = TRUE)
 })
 
 # Reactive helper for independent correlations (visualization) ---

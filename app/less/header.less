@@ -1,26 +1,36 @@
 #header {
-	height:				330px;
+	height:				450px;
 	background-image:	url("../img/Background.jpg");
 	background-size:	cover;
 	border-bottom:		@ps-gray-vdk solid 5px;
 	margin:				0 -15px 0 -15px;
+	display:			flex;
+	align-items:		center;
 
-	@media (max-width: @screen-xs-max) {
-		height:	200px;
-		top:	0;
+	@media (max-width: @screen-md-max) {
+		background-image:	url("../img/Background2.jpg");
+
+		@media (max-width: @screen-xs-max) {
+			height:	200px;
+			top:	0;
+		}
 	}
 	
 	
 	img {
 		position:	relative;
-		left:		3em;
-		top:		2em;
+		left:		15%;
+		//top:		3em;
+		max-width:	85%;
 
-		@media (max-width: @screen-xs-max) {
-			left:		0em;
-			padding:	0 1em 0 1em;
+		@media (max-width: @screen-md-max) {
+			left:	10%;
+
+			@media (max-width: @screen-xs-max) {
+				left:		5%;
+				//top:		5em;
+				padding:	0 0 0 1em;
+			}
 		}
 	}
-	
-
 }

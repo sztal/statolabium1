@@ -23,7 +23,7 @@ source(normalizePath("functions/functions.R"), local = TRUE)
 
 # Global options ----------------------------------------------------------
 
-options(shiny.trace = FALSE, shiny.reactlog = TRUE, OutDec = ",")
+options(shiny.trace = FALSE, shiny.reactlog = FALSE, OutDec = ",")
 options(
     DT.options  = list(
         pageLength = 10,
@@ -31,7 +31,7 @@ options(
         searching    = TRUE,
         keys         = TRUE,
         dom          = 'Blfrtip',
-        buttons      = I('colvis'),
+        buttons      = c(I('colvis'), 'copy', 'csv', 'excel', 'pdf', 'print'),
         scrollX      = TRUE,
         fixedColumns = TRUE,
         colReorder   = TRUE,
@@ -55,10 +55,10 @@ theme_set(theme_classic(base_size = 16))
 # Global variables --------------------------------------------------------
 
 # App settings ---
-appFamily <- "Statolabium"
-appNum    <- "I"
-appTitle  <- paste(appFamily, appNum)
-appDesc   <- "korelacje liniowe"
+appName <- "PorKor"
+appNum    <- NULL
+appTitle  <- if (!is.null(appNum)) paste(appName, appNum) else appName
+appFamily   <- "StatLab"
 
 # Colors ---
 psColors <- list(
